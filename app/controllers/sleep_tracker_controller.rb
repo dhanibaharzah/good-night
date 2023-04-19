@@ -1,5 +1,5 @@
 class SleepTrackerController < ApplicationController 
-  # bypassing this in order to see the logic is running, we not put this in production
+  # bypassing this in order to see the logic is running, not recommended to use this in production
   protect_from_forgery with: :null_session
   
   def index

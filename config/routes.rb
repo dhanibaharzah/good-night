@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-  get "/sleep_tracker", to: "sleep_tracker#index"
+  get "/clock_in", to: "sleep_tracker#index"
   post "/clock_in", to: "sleep_tracker#create"
+  
+  put "/friendships/:user_id/:action_type/:friend_id", to: "friendships#actions"
 
   # Defines the root path route ("/")
   # root "articles#index"
