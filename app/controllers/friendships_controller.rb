@@ -5,5 +5,7 @@ class FriendshipsController < ApplicationController
   def actions
     Friendship::FriendshipsService.new(params).call
     render_json
+  rescue ActiveRecord::RecordNotUnique, ActiveRecord::StatementInvalid => e
+    render_json(nil, status = 400, msg = e)
   end
 end
