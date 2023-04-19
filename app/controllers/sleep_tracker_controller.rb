@@ -13,5 +13,8 @@ class SleepTrackerController < ApplicationController
     render_json(
       SleepTracker::CreateSleepRecordService.new(params).call
     )
+    
+  rescue ActiveRecord::RecordNotFound => e
+    render_json(nil, status = 404, msg = 'User not found')
   end
 end

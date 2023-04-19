@@ -6,8 +6,8 @@ module SleepTracker
     
     def call
       create_sleep_record if check_user?
-    rescue ActiveRecord::RecordNotFound => e
-      e
+    rescue => e
+      raise ActiveRecord::RecordNotFound
     end
     
     private
