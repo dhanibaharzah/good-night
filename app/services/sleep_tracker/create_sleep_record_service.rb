@@ -17,7 +17,7 @@ module SleepTracker
     end
     
     def check_user?
-      User.find(@params[:user_id])
+      User.find(@params[:user_id]).present?
     end
     
     def sleep_record_params

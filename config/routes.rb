@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post "/clock_in", to: "sleep_tracker#create"
   
   put "/friendships/user/:user_id/:action_type/:friend_id", to: "friendships#actions"
+  get "/friendships/user/:user_id/sleep", to: "friendships#sleep_records"
 
   # Defines the root path route ("/")
   # root "articles#index"

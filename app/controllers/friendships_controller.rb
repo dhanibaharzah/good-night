@@ -12,4 +12,11 @@ class FriendshipsController < ApplicationController
   rescue ActiveRecord::RecordNotUnique, ActiveRecord::StatementInvalid => e
     render_json(nil, status = 400, msg = e)
   end
+  
+  def sleep_records
+    service = Friendship::FriendSleepRecordsService.new(params).call
+    data = FriendSleepRecordSerializer.instance.serialize(service)
+    
+    render_json(data)
+  end
 end
