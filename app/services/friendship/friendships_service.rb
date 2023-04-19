@@ -1,7 +1,5 @@
 module Friendship
   class FriendshipsService
-    
-    
     def initialize(params)
       @params = params
     end
@@ -35,6 +33,9 @@ module Friendship
         user_id: @params[:user_id],
         friend_id: @params[:friend_id]
       )
+      
+    rescue => e
+      raise ActiveRecord::StatementInvalid
     end
     
     def unfollow

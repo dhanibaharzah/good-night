@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
     response[:data] = [] if params == []
     render json: response, status: status
   end
+  
+  def validate_params!(schema)
+    result = schema.call(params.to_unsafe_hash)
+
+    render_json(nil, 422, 'Invalid Params') unless result.success?
+  end
 end
