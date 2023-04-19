@@ -2,6 +2,10 @@ class SleepTrackerController < ApplicationController
   # bypassing this in order to see the logic is running, not recommended to use this in production
   protect_from_forgery with: :null_session
   
+  before_action only: %i[create] do
+    validate_params!(Contracts::SleepTracker::Create.new)
+  end
+  
   def index
     service = SleepTracker::GetSleepRecordsService.new.call
     data = SleepTrackerSerializer.instance.serialize(service)
