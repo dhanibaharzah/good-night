@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_034601) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_19_073442) do
   create_table "friends", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "friend_id", null: false
+    t.integer "user_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["friend_id"], name: "index_friends_on_friend_id"
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_034601) do
   end
 
   create_table "sleep_records", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.datetime "start_time"
     t.datetime "end_time"
     t.datetime "created_at", null: false
@@ -31,8 +31,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_034601) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
