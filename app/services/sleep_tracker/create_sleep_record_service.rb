@@ -10,7 +10,7 @@ module SleepTracker
       if @params[:clock_in].present?
         raise TriplaApiError::DuplicateRecordError unless get_sleep_record.nil?
         clock_in_record
-      elsif @params[:clock_out].present
+      elsif @params[:clock_out].present?
         clock_out_record
       end
     end
@@ -37,7 +37,8 @@ module SleepTracker
     
     def clock_out_record
       get_sleep_record.update!(
-        end_time: @params[:clock_out]
+        end_time: @params[:clock_out],
+        duration: Time.parse(@params[:clock_out]) - get_sleep_record.start_time
       )
     end
   end
