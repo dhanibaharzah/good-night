@@ -5,7 +5,7 @@ module Friendship
     end
     
     def call
-      raise ActiveRecord::RecordNotUnique unless check_eligibility?
+      raise TriplaApiError::DuplicateRecordError unless check_eligibility?
       perform_actions 
     end
     
@@ -35,7 +35,7 @@ module Friendship
       )
       
     rescue => e
-      raise ActiveRecord::StatementInvalid
+      raise TriplaApiError::InvalidRecordError
     end
     
     def unfollow
@@ -45,7 +45,7 @@ module Friendship
       ).destroy!
       
     rescue => e
-      raise ActiveRecord::StatementInvalid
+      raise TriplaApiError::InvalidRecordError
     end
   end
 end

@@ -1,4 +1,8 @@
+require_dependency '../_concerns/tripla_api_error'
+
 class ApplicationController < ActionController::Base
+  rescue_from TriplaApiError::BaseError, with: :handle_tripla_api_error
+  
   def render_json(params = nil, status = 200, msg = 'Success')
     response = {
       message: msg,
@@ -12,6 +16,10 @@ class ApplicationController < ActionController::Base
   def validate_params!(schema)
     result = schema.call(params.to_unsafe_hash)
 
-    render_json(nil, 422, 'Invalid Params') unless result.success?
+    raise TriplaApiError::InvalidParamsError unless result.success?
+  end
+  
+  def handle_tripla_api_error(error)
+    render_json(error.data, error.http_status_code, error.message)
   end
 end

@@ -9,8 +9,8 @@ class FriendshipsController < ApplicationController
   def actions
     Friendship::FriendshipsService.new(params).call
     render_json
-  rescue ActiveRecord::RecordNotUnique, ActiveRecord::StatementInvalid => e
-    render_json(nil, status = 400, msg = e)
+  rescue TriplaApiError::BaseError => e
+    render_json(e.data, e.http_status_code, e.message)
   end
   
   def sleep_records

@@ -5,26 +5,40 @@ module SleepTracker
     end
     
     def call
-      create_sleep_record if check_user?
-    rescue => e
-      raise ActiveRecord::RecordNotFound
+      raise TriplaApiError::NotFoundError unless check_user?
+      
+      if @params[:clock_in].present?
+        raise TriplaApiError::DuplicateRecordError unless get_sleep_record.nil?
+        clock_in_record
+      elsif @params[:clock_out].present
+        clock_out_record
+      end
     end
     
     private
-    
-    def create_sleep_record
-      SleepRecord.create!(sleep_record_params)
-    end
     
     def check_user?
       User.find(@params[:user_id]).present?
     end
     
-    def sleep_record_params
-      {
+    def get_sleep_record
+      SleepRecord.find_by(
         user_id: @params[:user_id],
-        start_time: @params[:start_time]
-      }
+        end_time: nil
+      )
+    end
+    
+    def clock_in_record
+      SleepRecord.create!(
+        user_id: @params[:user_id],
+        start_time: @params[:clock_in]
+      )
+    end
+    
+    def clock_out_record
+      get_sleep_record.update!(
+        end_time: @params[:clock_out]
+      )
     end
   end
 end
