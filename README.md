@@ -15,7 +15,6 @@ We use SQLite3 for development and test environments.
 - Run `rails db:migrate` to create the database.
 - Run `rails db:seed` to populate the database with some data.
 
-
 ### How to run locally
 - Run `rails s` to start the server.
 - Run `rails c` to open the console.
