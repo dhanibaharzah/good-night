@@ -5,6 +5,16 @@ application up and running.
 
 Things you may want to cover:
 
+### Business requirements
+
+This is "good night" application to let users track when do they go to bed and when do they wake up.
+
+The requirements of this restful APIS to achieve the following:
+
+1. Clock In operation, and return all clocked-in times, ordered by created time.
+2. Users can follow and unfollow other users.
+3. See the sleep records of a user's All friends from the previous week, which are sorted based on the duration of All friends sleep length.
+
 ### System version
 - Ruby  `3.0.0`
 - Rails `7.0.4.3`
