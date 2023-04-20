@@ -14,6 +14,7 @@ The requirements of this restful APIS to achieve the following:
 1. Clock In operation, and return all clocked-in times, ordered by created time.
 2. Users can follow and unfollow other users.
 3. See the sleep records of a user's All friends from the previous week, which are sorted based on the duration of All friends sleep length.
+4. No need to implement any user registration API.
 
 ### System version
 - Ruby  `3.0.0`
