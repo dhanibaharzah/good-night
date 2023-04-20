@@ -23,4 +23,3 @@ We use SQLite3 for development and test environments.
 It will open the server on `localhost:3000`.
 
 You can test it in the Postman app and use this collections: https://solar-desert-450031.postman.co/workspace/My-Workspace~807d45b9-4a3f-40ea-869f-ed95144d3acf/collection/11525171-80ebf613-5f60-4ac5-82fc-9ed66f683824?action=share&creator=11525171
-
